@@ -1,4 +1,5 @@
 ﻿using FirstMvcProject.Entity;
+using FirstMvcProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System;
@@ -22,6 +23,22 @@ namespace FirstMvcProject.Controllers
             var categoryList = _db.Category;
 
             return View(categoryList);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category model)
+        {
+            _db.Category.Add(model);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
