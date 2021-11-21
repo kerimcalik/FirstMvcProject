@@ -1,0 +1,34 @@
+﻿@model FirstMvcProject.Models.Category
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div class="row form-group">
+            <h2 class="text-info">Yeni Kategori</h2>
+        </div>
+        <div class="row">
+            <!-- Kategori Adı -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Sıra -->
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="DisplayOrder"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="DisplayOrder" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Form Submit -->
+            <div class="form-group row">
+                <input type="submit" class="btn btn-success" value="Gönder" />
+            </div>
+        </div>
+    </div>
+</form>
