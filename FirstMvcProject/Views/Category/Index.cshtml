@@ -33,7 +33,7 @@
                             <td>@item.Name</td>
                             <td>@item.DisplayOrder</td>
                             <td>
-                                <a class="btn btn-warning">Düzenle</a>
+                                <a class="btn btn-warning" asp-controller="Category" asp-action="Edit" asp-route-Id="@item.Id">Düzenle</a>
                                 <a class="btn btn-danger">Sil</a>
                             </td>
                         </tr>

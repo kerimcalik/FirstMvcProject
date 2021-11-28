@@ -15,7 +15,7 @@ namespace FirstMvcProject.Controllers
 
         public CategoryController(ApplicationDbContext db)
         {
-            _db = db;            
+            _db = db;
         }
 
         public IActionResult Index()
@@ -35,10 +35,29 @@ namespace FirstMvcProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category model)
         {
-            _db.Category.Add(model);
-            _db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _db.Category.Add(model);
+                _db.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var model = _db.Category.Find(id);
+
+            return View(model);
+
         }
     }
 }
