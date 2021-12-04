@@ -48,3 +48,21 @@
     </div>
 
 </div>
+@section Scripts{
+    <script>
+        $(function () {
+            //alert("Silmek istediğinizden emin misiniz?");
+        })
+
+        $(document).ready(function () {
+            if (confirm("Silmek istediğinizden emin misiniz?")) {
+                $.post('Category/Delete', function () {
+                    alert("post çalıştı")
+                })
+            }
+            /* else {
+                alert("no")
+            }*/
+        })
+    </script>
+}
