@@ -57,7 +57,21 @@ namespace FirstMvcProject.Controllers
             var model = _db.Category.Find(id);
 
             return View(model);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Category.Update(model);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
     }
 }
