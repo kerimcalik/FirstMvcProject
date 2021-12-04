@@ -73,5 +73,25 @@ namespace FirstMvcProject.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return Ok(new { success = false, error = "Aradığınız kategori bulunamadı" });
+            }
+
+            var model = _db.Category.Find(id);
+
+            if (model == null)
+            {
+                return Ok(new { success = false, error = "Aradığınız kategori bulunamadı" });
+            }
+
+            _db.Category.Remove(model);
+            await _db.SaveChangesAsync();
+
+            return Ok(new { success = true });
+        }
     }
 }

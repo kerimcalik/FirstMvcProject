@@ -34,7 +34,7 @@
                             <td>@item.DisplayOrder</td>
                             <td>
                                 <a class="btn btn-warning" asp-controller="Category" asp-action="Edit" asp-route-Id="@item.Id">Düzenle</a>
-                                <a class="btn btn-danger">Sil</a>
+                                <a class="btn btn-danger" data-id="@item.Id" onclick="DeleteCategory(@item.Id)">Sil</a>
                             </td>
                         </tr>
                     }
@@ -52,14 +52,77 @@
     <script>
         $(function () {
             //alert("Silmek istediğinizden emin misiniz?");
-        })
+            
 
-        $(document).ready(function () {
-            if (confirm("Silmek istediğinizden emin misiniz?")) {
-                $.post('Category/Delete', function () {
-                    alert("post çalıştı")
+        })
+        function DeleteCategory(id) {
+            Swal.fire({
+                title: 'Sil?',
+                text: "Kategoriyi silmek istediğinizden emin misiniz!",
+                icon: 'danger',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sil!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('Category/Delete', 'id=' + id, function (result) {
+                        if (result.success == false) {
+                            Swal.fire(
+                                'Hata!',
+                                result.error,
+                                'danger'
+                            )
+                        } else if (result.success) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Seçtiğiniz kategori silindi',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then((result) => {
+                                window.location = location.href;
+                            })
+                        }
+
+
+                    })
+                }
+
+                //if (result.isConfirmed) {
+                //    Swal.fire(
+                //        'Silinde!',
+                //        'İlgili kategori silindi.',
+                //        'success'
+                //    )
+                //}
+            })
+
+            /*if (confirm("Silmek istediğinizden emin misiniz?")) {
+
+                $.post('Category/Delete', 'id=' + id, function (result) {
+                    if (result.success == false) {
+                        alert(result.error)
+                    } else if (result.success) {
+                        window.location = location.href;
+                    }
+
+                    
                 })
-            }
+            }*/
+        }
+        $(document).ready(function () {
+
+            //$('#btnDelete').click(function () {
+            //    alert(1);
+            //});
+
+            //$('.btn-danger').bind('click', function () {
+            //    alert($(this).data('id'));
+            //});
+
+            
+            
             /* else {
                 alert("no")
             }*/
