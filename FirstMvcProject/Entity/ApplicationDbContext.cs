@@ -16,5 +16,6 @@ namespace FirstMvcProject.Entity
         }
 
         public DbSet<Category> Category { get; set; }
+        public DbSet<ProductType> ProductType { get; set; }
     }
 }
