@@ -35,9 +35,51 @@ namespace FirstMvcProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Ekle(ProductType model)
         {
+            if (ModelState.IsValid)
+            {
+                _db.ProductType.Add(model);
+                _db.SaveChanges();
 
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Create", model);
+            }
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id <= 0)
+            {
+                return NotFound();
+            }
+
+            var model = _db.ProductType.Find(id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ProductType model)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ProductType.Update(model);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+
+            return View(model);
         }
     }
 }

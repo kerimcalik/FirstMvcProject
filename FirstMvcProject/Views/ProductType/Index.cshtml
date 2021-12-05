@@ -29,7 +29,10 @@
                         <td>@item.Id</td>
                         <td>@item.Name</td>
                         <td>
-                            <button>Düzenle</button>
+                            
+                            <button type="submit"
+                                    onclick="window.location = 'ProductType/Edit/@item.Id'" 
+                                    >Düzenle</button>
                             <button>Sil</button>
                         </td>
                     </tr>

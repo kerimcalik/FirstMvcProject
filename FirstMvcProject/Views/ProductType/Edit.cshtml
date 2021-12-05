@@ -1,11 +1,11 @@
 ﻿@model FirstMvcProject.Models.ProductType
 
-<form method="post" asp-action="Ekle">
+<form method="post" asp-action="Edit">
     <div class="border p-3">
         <div class="row form-group">
-            <h2 class="text-info pl-3">Yeni Ürün Tipi</h2>
+            <h2 class="text-info pl-3">Ürün Tipi Düzenle</h2>
         </div>
-
+        
         <div class="row">
             <div class="col-12">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -15,7 +15,7 @@
                         <label asp-for="Name"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control" required />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <!-- Form Submit -->
                 <div class="form-group row">
                     <!--<input type="submit" class="btn btn-success" value="Gönder" />-->
-                    <button type="submit" class="btn btn-success">Ekle</button>
+                    <button type="submit" class="btn btn-success">Düzenle</button>
                 </div>
             </div>
         </div>

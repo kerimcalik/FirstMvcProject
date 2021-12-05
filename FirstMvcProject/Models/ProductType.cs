@@ -11,6 +11,7 @@ namespace FirstMvcProject.Models
 
         [StringLength(50)]
         [Column("Name", TypeName = "varchar")]
+        [Required(ErrorMessage ="Bu alanı boş bırakamazsınız")]
         public string Name { get; set; }
     }
 }
