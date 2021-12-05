@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FirstMvcProject.Models.ProductType>
+
+<div class="container p-3">
+    <div class="row p-4">
+        
+        <div class="col-6">
+            <h2 class="text-primary">Ürün Tipi</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <a asp-controller="ProductType" asp-action="Index" 
+               class="btn btn-primary">Ürün Tipi Ekle</a>
+        </div>
+    </div>
+
+    <div class="row p-4">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>
+                            <button>Düzenle</button>
+                            <button>Sil</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
