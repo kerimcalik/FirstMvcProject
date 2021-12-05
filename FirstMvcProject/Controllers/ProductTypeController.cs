@@ -22,6 +22,15 @@ namespace FirstMvcProject.Controllers
             //select * from ProductType
             IEnumerable<ProductType> model = _db.ProductType;
             
+            return View(model);
+        }
+
+        // GET - CREATE
+        //[HttpGet]
+        //[ActionName("Ekle")]
+        //[Route("{Controller}/UrunTipi/Ekle")]
+        public IActionResult Create()
+        {
             return View();
         }
     }
